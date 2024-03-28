@@ -29,8 +29,9 @@ class _TimelineItemState extends State<TimelineItem> {
 
     final curItem = widget.curItem;
     final secs = curItem.tSecs;
-    secsText = secs?.toString() ?? "|";
-    minsText = curItem.tMins?.toString();
+    secsText = secs?.toString().padLeft(2, '0') ?? "00";
+    minsText =
+        curItem.tMins != null ? curItem.tMins.toString().padLeft(2, '0') : '00';
   }
 
   @override

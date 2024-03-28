@@ -53,53 +53,23 @@ Widget itemMinSecsLabels(String? secsText_, String? minsText_,
     TimelineItemData curItem, double rulerSize, double rulerInsidePadding) {
   final String secsText = secsText_ ?? curItem.tSecs.toString();
   final String? minsText = minsText_ ?? curItem.tMins?.toString();
+  var dividerStyle = TextStyle(fontSize: rulerSize, color: curItem.color);
+
+  var dividerText = Text(
+    "|",
+    style: dividerStyle,
+  );
+
   return Column(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
+    children: [
       Text(
-        "|", //this is the top alignment line
-        style: TextStyle(fontSize: rulerSize, color: curItem.color),
+        '$minsText:$secsText',
+        style: TextStyle(fontSize: curItem.fontSize, color: curItem.color),
       ),
       SizedBox(height: rulerInsidePadding),
-      ...((minsText == null)
-          ? [] //nothing to the colum if minsText is null
-          : [
-              //add minutes text if minsText not null
-              RichText(
-                //this is the minutes text  label for this element
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: minsText,
-                      style: TextStyle(
-                          fontSize: curItem.fontSize,
-                          color: curItem.color,
-                          fontWeight: secsText == "0"
-                              ? FontWeight.w800
-                              : FontWeight.w400),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-      RichText(
-        // this is the seconds text  label for this element
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: secsText,
-              style:
-                  TextStyle(fontSize: curItem.fontSize, color: curItem.color),
-            )
-          ],
-        ),
-      ),
-      SizedBox(height: rulerInsidePadding),
-      Text(
-        "|", // this is the bottom alignment line
-        style: TextStyle(fontSize: rulerSize, color: curItem.color),
-      ),
+      dividerText,
     ],
   );
 }
