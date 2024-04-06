@@ -11,8 +11,9 @@ class NonSharedDraggingState implements IScrollableTimelineDraggingState {
   NonSharedDraggingState();
   @override
   bool isDragging = false;
+
   /// identityHashCode of the widget that is driving the dragging
-  int draggingId=0;
+  int draggingId = 0;
 }
 
 /// a widget that provides a shared [isDragging] state to children
@@ -21,6 +22,7 @@ class NonSharedDraggingState implements IScrollableTimelineDraggingState {
 /// as any of them is dragged.
 ///
 /// see https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html
+// ignore: must_be_immutable
 class ScrollableTimelineSharedDragging extends InheritedWidget
     implements IScrollableTimelineDraggingState {
   ScrollableTimelineSharedDragging({
@@ -30,7 +32,7 @@ class ScrollableTimelineSharedDragging extends InheritedWidget
 
   @override
   bool isDragging = false;
-  int  draggingId =0;
+  int draggingId = 0;
 
   static ScrollableTimelineSharedDragging? of(BuildContext context) {
     final ScrollableTimelineSharedDragging? result = context
@@ -41,6 +43,5 @@ class ScrollableTimelineSharedDragging extends InheritedWidget
 
   @override
   bool updateShouldNotify(ScrollableTimelineSharedDragging old) =>
-      (isDragging != old.isDragging) ||
-      (draggingId != draggingId);
+      (isDragging != old.isDragging) || (draggingId != draggingId);
 }

@@ -153,10 +153,10 @@ class ScrollableTimeline extends StatefulWidget implements IScrollableTimeLine {
       this.rulerOutsidePadding = 10,
       this.rulerSize = 8,
       this.rulerInsidePadding = 5,
-      //TODO currently this default value is set to a very high value, that is appropriate for even full window full width timeline on web platform
+      // currently this default value is set to a very high value, that is appropriate for even full window full width timeline on web platform
       //     but is actually an overkill. I should define this using mediaquery https://api.flutter.dev/flutter/widgets/MediaQuery-class.html
       //     But since I am using ListView.builder with itemBuilder, it is probably OK to leave the code as it is
-      //  TODO: wait for when widget width is available (see for https://github.com/ayham95/Measured-Size/blob/main/lib/measured_size.dart)
+      // wait for when widget width is available (see for https://github.com/ayham95/Measured-Size/blob/main/lib/measured_size.dart)
       //  and automatically define the required number of pad items
       this.nPadItems = 50,
       this.backgroundColor = Colors.white,
@@ -314,7 +314,7 @@ class _ScrollableTimelineState extends State<ScrollableTimeline> {
               if (scrollNotification is ScrollUpdateNotification) {
                 this.widget.onDragUpdate?.call(t);
               } else if (scrollNotification is ScrollEndNotification) {
-                //TODO the following code forcing back _scrollController to
+                //the following code forcing back _scrollController to
                 // a valid position is not always necessary because _scrollController
                 // itself is driven by the current time and if the clippedT is feed
                 // back in widget.timeStream, then the clipping will happen automatically
@@ -387,7 +387,7 @@ class _ScrollableTimelineState extends State<ScrollableTimeline> {
         //see https://docs.flutter.dev/development/ui/widgets-intro#keys
         //see https://api.flutter.dev/flutter/foundation/Key-class.html
         //see https://www.youtube.com/watch?v=kn0EOS-ZiIc
-        key: UniqueKey()); //TODO I could use ObjectKey(itemData) instead
+        key: UniqueKey()); // I could use ObjectKey(itemData) instead
   }
 
   //------------------------------------------------------------

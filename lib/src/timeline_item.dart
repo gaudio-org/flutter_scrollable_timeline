@@ -29,9 +29,20 @@ class _TimelineItemState extends State<TimelineItem> {
 
     final curItem = widget.curItem;
     final secs = curItem.tSecs;
-    secsText = secs?.toString().padLeft(2, '0') ?? "00";
-    minsText =
-        curItem.tMins != null ? curItem.tMins.toString().padLeft(2, '0') : '00';
+    bool isOdd = curItem.tSecs! % 2 == 1;
+
+    secsText = isOdd
+        ? secs! == 0
+            ? '00'
+            : ''
+        : secs!.toString().padLeft(2, '0');
+    minsText = isOdd
+        ? secs == 0
+            ? '00'
+            : ''
+        : curItem.tMins != null
+            ? curItem.tMins.toString().padLeft(2, '0')
+            : '00';
   }
 
   @override
@@ -41,10 +52,6 @@ class _TimelineItemState extends State<TimelineItem> {
           padding: EdgeInsets.symmetric(
             horizontal: 1,
             vertical: widget.rulerOutsidePadding,
-          ),
-          decoration: BoxDecoration(
-            color: widget.backgroundColor,
-            borderRadius: BorderRadius.circular(10),
           ),
           child: itemMinSecsLabels(secsText, minsText, widget.curItem,
               widget.rulerSize, widget.rulerInsidePadding)),

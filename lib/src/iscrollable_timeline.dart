@@ -3,7 +3,7 @@ import 'scrollable_timeline.dart';
 import 'timeline_item_data.dart';
 
 /// base class for [ScrollableTimeline] implementations
-/// TODO: not used anymore: remove?
+/// not used anymore: remove?
 abstract class IScrollableTimeLine {
   abstract final int lengthSecs;
   abstract final int stepSecs;
@@ -60,15 +60,19 @@ Widget itemMinSecsLabels(String? secsText_, String? minsText_,
     style: dividerStyle,
   );
 
+  bool oddTime = curItem.tSecs! % 2 == 1;
+
   return Column(
-    mainAxisSize: MainAxisSize.min,
-    mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text(
-        '$minsText:$secsText',
-        style: TextStyle(fontSize: curItem.fontSize, color: curItem.color),
+      Container(
+        padding: EdgeInsets.only(top: rulerInsidePadding),
+        child: Text(
+          oddTime ? '' : '$minsText:$secsText',
+          style: TextStyle(
+              fontSize: oddTime ? curItem.fontSize : rulerSize,
+              color: curItem.color),
+        ),
       ),
-      SizedBox(height: rulerInsidePadding),
       dividerText,
     ],
   );
