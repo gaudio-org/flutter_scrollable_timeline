@@ -363,7 +363,7 @@ class _ScrollableTimelineState extends State<ScrollableTimeline> {
           tMins: 0,
           tSecs: 0,
           color: widget.backgroundColor,
-          fontSize: 14);
+          fontSize: 10);
     } else {
       int i = index - widget.nPadItems;
       int t = i * widget.stepSecs;
@@ -379,7 +379,7 @@ class _ScrollableTimelineState extends State<ScrollableTimeline> {
           tMins: mins,
           tSecs: shownSecs,
           color: widget.itemTextColor,
-          fontSize: 14.0);
+          fontSize: 10);
     }
     return TimelineItem(itemData, widget.backgroundColor,
         widget.rulerOutsidePadding, widget.rulerSize, widget.rulerInsidePadding,

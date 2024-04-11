@@ -53,27 +53,26 @@ Widget itemMinSecsLabels(String? secsText_, String? minsText_,
     TimelineItemData curItem, double rulerSize, double rulerInsidePadding) {
   final String secsText = secsText_ ?? curItem.tSecs.toString();
   final String? minsText = minsText_ ?? curItem.tMins?.toString();
-  var dividerStyle = TextStyle(fontSize: rulerSize, color: curItem.color);
-
-  var dividerText = Text(
-    "|",
-    style: dividerStyle,
-  );
 
   bool oddTime = curItem.tSecs! % 2 == 1;
 
   return Column(
     children: [
       Container(
-        padding: EdgeInsets.only(top: rulerInsidePadding),
+        padding: EdgeInsets.only(top: 13),
+        alignment: Alignment.bottomCenter,
         child: Text(
-          oddTime ? '' : '$minsText:$secsText',
+          oddTime ? ' ' : '$minsText:$secsText',
           style: TextStyle(
               fontSize: oddTime ? curItem.fontSize : rulerSize,
               color: curItem.color),
         ),
       ),
-      dividerText,
+      Container(
+        color: curItem.color,
+        height: oddTime ? 2 : 4,
+        width: 0.5,
+      ),
     ],
   );
 }
